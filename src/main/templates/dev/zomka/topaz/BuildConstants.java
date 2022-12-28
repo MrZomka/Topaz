@@ -1,4 +1,4 @@
-package dev.zomka.topaze;
+package dev.zomka.Topaz;
 
 // The constants are replaced before compilation
 public class BuildConstants {

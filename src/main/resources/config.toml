@@ -1,5 +1,5 @@
 [Options]
 email="InsertYourEmailHere"
 [Messages]
-usingVPN="Topaze RESPONSE!"
-errorKick="Topaze ERROR!"
+usingVPN="Topaz RESPONSE!"
+errorKick="Topaz ERROR!"

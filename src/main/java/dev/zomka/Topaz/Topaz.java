@@ -1,4 +1,4 @@
-package dev.zomka.topaze;
+package dev.zomka.Topaz;
 
 import com.google.inject.Inject;
 import com.moandjiezana.toml.Toml;
@@ -21,13 +21,13 @@ import java.util.Scanner;
 import static net.kyori.adventure.text.Component.text;
 
 @Plugin(
-        id = "topaze",
-        name = "Topaze",
-        version = BuildConstants.VERSION,
+        id = "topaz",
+        name = "Topaz",
+        version = dev.zomka.Topaz.BuildConstants.VERSION,
         description = "A simple Anti-VPN that doesn't depend on it's own weird, unknown API. Inspired by egg82/Laarryy's Anti-VPN plugin.",
         authors = {"Zomka"}
 )
-public class Topaze {
+public class Topaz {
 
     @Inject
     private Logger logger;

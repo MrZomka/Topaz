@@ -4,6 +4,7 @@
 ## Installation guide:
 You need:
 * Velocity 3.1.2+
+* Java 17+
 * Email address
 * A custom plan from GetIPIntel **(required only if you will be making more than 500 requests a day)**
 

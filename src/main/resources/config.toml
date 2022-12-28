@@ -1,0 +1,5 @@
+[Options]
+email="InsertYourEmailHere"
+[Messages]
+usingVPN="Topaze RESPONSE!"
+errorKick="Topaze ERROR!"

@@ -77,7 +77,7 @@ public class Topaze {
             }
             //Retrieving the String from the String Buffer object
             String result = sb.toString();
-            System.out.println(e.getPlayer().getUsername() + "'s (" + e.getPlayer().getUniqueId() + ") IP quality score: " + result + " (" + e.getPlayer().getRemoteAddress().getHostName() + ")");
+            logger.warn(e.getPlayer().getUsername() + " (" + e.getPlayer().getUniqueId() + ") failed the IP quality score check! " + result + " (" + e.getPlayer().getRemoteAddress().getHostName() + ")");
             double number = Double.parseDouble(result);
             if (number > 0.99) {
                 e.setResult(ResultedEvent.ComponentResult.denied(text(messages.getString("usingVPN"))));

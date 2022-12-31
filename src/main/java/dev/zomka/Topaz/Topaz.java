@@ -69,7 +69,7 @@ public class Topaz {
         Toml messages = config.getTable("Messages");
         try {
             Toml options = config.getTable("Options");
-            URL url = new URL("http://check.getipintel.net/check.php?ip=" + e.getPlayer().getRemoteAddress().getHostName() + "&contact=" + options.getString("email"));
+            URL url = new URL("http://check.getipintel.net/check.php?ip=" + e.getPlayer().getRemoteAddress().getHostString() + "&contact=" + options.getString("email"));
             Scanner sc = new Scanner(url.openStream());
             StringBuffer sb = new StringBuffer();
             while (sc.hasNext()) {
@@ -77,10 +77,10 @@ public class Topaz {
             }
             //Retrieving the String from the String Buffer object
             String result = sb.toString();
-            logger.warn(e.getPlayer().getUsername() + " (" + e.getPlayer().getUniqueId() + ") failed the IP quality score check! " + result + " (" + e.getPlayer().getRemoteAddress().getHostName() + ")");
             double number = Double.parseDouble(result);
             if (number > 0.99) {
                 e.setResult(ResultedEvent.ComponentResult.denied(text(messages.getString("usingVPN"))));
+                logger.warn(e.getPlayer().getUsername() + " (" + e.getPlayer().getUniqueId() + ") failed the IP quality score check! " + result + " (" + e.getPlayer().getRemoteAddress().getHostString() + ")");
             }
         } catch (IOException ex) {
             logger.error("Something went wrong! Make sure you put your correct email in the config file and have enough API requests for today!");

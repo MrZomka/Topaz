@@ -24,7 +24,7 @@ Q: I get error -5 when trying to join my server!
 A: You ran out of requests! You need to buy more from GetIPIntel or set the clear cache interval to something higher.
 
 Q: What are the permissions that Topaz checks for?
-A: `topaz.reload` for the config reloading command (`/topaz`) and `topaz.bypass` for the IP quality score check bypass.
+A: `topaz.bypass` for the IP quality score check bypass.
 
 Q: What permission plugin do you recommend?
 A: [LuckPerms never failed me. :)](https://luckperms.net)

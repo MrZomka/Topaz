@@ -16,4 +16,17 @@ You need:
 
 And you're good to go! :)
 
+## FAQ:
+Q: Can I change the clear cache interval?
+A: Yeah! Just keep in mind that the interval there is in seconds, not minutes or hours. ;)
+
+Q: I get error -5 when trying to join my server!
+A: You ran out of requests! You need to buy more from GetIPIntel or set the clear cache interval to something higher.
+
+Q: What are the permissions that Topaz checks for?
+A: `topaz.reload` for the config reloading command (`/topaz`) and `topaz.bypass` for the IP quality score check bypass.
+
+Q: What permission plugin do you recommend?
+A: [LuckPerms never failed me. :)](https://luckperms.net)
+
 ## Support is offered on my [Discord server](https://discord.gg/y3VdCeJaC2).

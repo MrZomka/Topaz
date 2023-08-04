@@ -24,9 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 import static net.kyori.adventure.text.Component.text;
-
 @Plugin(
         id = "topaz",
         name = "Topaz",
@@ -41,10 +39,8 @@ public class Topaz {
     @Inject
     private Logger logger;
     private Toml config;
-
     @Inject @DataDirectory
     private Path configFolder;
-
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private Toml loadConfig(Path path) {
         File folder = path.toFile();
@@ -66,7 +62,6 @@ public class Topaz {
         }
         return new Toml().read(file);
     }
-
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void configLoader(Path folder) throws IOException {
         config = loadConfig(folder);
@@ -90,7 +85,6 @@ public class Topaz {
             }
         }
     }
-
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         try {
@@ -100,33 +94,21 @@ public class Topaz {
             return;
         }
         logger.info("Startup successful.");
-        proxy.getScheduler().buildTask(this, () -> {
-            allowedIPs.clear();
-            blockedIPs.clear();
-            logger.info("Cache cleared!");}
-        ).delay(0, TimeUnit.SECONDS)
-                .repeat(config.getTable("Options").getLong("cacheClearInterval").intValue(), TimeUnit.SECONDS)
-                .schedule();
+        proxy.getScheduler().buildTask(this, () -> {allowedIPs.clear();blockedIPs.clear();logger.info("Cache cleared!");}).delay(0, TimeUnit.SECONDS).repeat(config.getTable("Options").getLong("cacheClearInterval").intValue(), TimeUnit.SECONDS).schedule();
     }
-
     @Inject
     public Topaz(ProxyServer proxy) {
         this.proxy = proxy;
         this.allowedIPs = new ArrayList<>();
         this.blockedIPs = new ArrayList<>();
-
-        // Register reload command
         CommandManager commandManager = proxy.getCommandManager();
         CommandMeta meta = commandManager.metaBuilder("topazreload").build();
         commandManager.register(meta, new ReloadCommand());
     }
-
     @Subscribe
     public void onLoginEvent(LoginEvent e) {
         Toml messages = config.getTable("Messages");
-        if (e.getPlayer().hasPermission("topaz.bypass") || allowedIPs.contains(e.getPlayer().getRemoteAddress().getHostString())) {
-            return;
-        }
+        if (e.getPlayer().hasPermission("topaz.bypass") || allowedIPs.contains(e.getPlayer().getRemoteAddress().getHostString())) {return;}
         Toml options = config.getTable("Options");
         if (blockedIPs.contains(e.getPlayer().getRemoteAddress().getHostString())) {
             e.setResult(ResultedEvent.ComponentResult.denied(text(messages.getString("usingVPN"))));
@@ -137,27 +119,21 @@ public class Topaz {
             URL url = new URL(options.getString("subdomain") + "?ip=" + e.getPlayer().getRemoteAddress().getHostString() + "&contact=" + options.getString("email"));
             Scanner sc = new Scanner(url.openStream());
             StringBuilder sb = new StringBuilder();
-            while (sc.hasNext()) {
-                sb.append(sc.next());
-            }
+            while (sc.hasNext()) {sb.append(sc.next());}
             String result = sb.toString();
             double number = Double.parseDouble(result);
             if (number > 0.99) {
                 blockedIPs.add(e.getPlayer().getRemoteAddress().getHostString());
                 e.setResult(ResultedEvent.ComponentResult.denied(text(messages.getString("usingVPN"))));
                 logger.warn(e.getPlayer().getUsername() + " (" + e.getPlayer().getUniqueId() + ") failed the IP quality score check! " + result + " (" + e.getPlayer().getRemoteAddress().getHostString() + ")");
-            } else {
-                allowedIPs.add(e.getPlayer().getRemoteAddress().getHostString());
-            }
+            } else {allowedIPs.add(e.getPlayer().getRemoteAddress().getHostString());}
         } catch (IOException ex) {
             logger.error("Something went wrong! Make sure you put your correct email in the config file and have enough API requests for today!");
             ex.printStackTrace();
             e.setResult(ResultedEvent.ComponentResult.denied(text((messages.getString("errorKick")))));
         }
     }
-
     public final class ReloadCommand implements SimpleCommand {
-
         @Override
         public void execute(final Invocation invocation) {
             CommandSource source = invocation.source();
@@ -171,7 +147,6 @@ public class Topaz {
                 e.printStackTrace();
             }
         }
-
         @Override
         public boolean hasPermission(final Invocation invocation) {
             return invocation.source().hasPermission("topaz.reload");

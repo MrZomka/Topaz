@@ -6,7 +6,7 @@ You need:
 * Velocity 3.1.2+
 * Java 17+
 * Email address
-* A custom plan from ProxyCheck.io **(required only if you will be making more than 500 requests a day)**
+* A custom plan from ProxyCheck.io **(required only if you will be making more than 100/1000 requests a day)**
 
 1. Download the plugin from the [releases tab](https://github.com/MrZomka/Topaz/releases).
 1. Install the plugin on your Velocity proxy.

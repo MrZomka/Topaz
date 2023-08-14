@@ -1,9 +1,11 @@
 [Options]
-subdomain="http://check.getipintel.net/check.php"
-email="InsertYourEmailHere"
+#Uncomment the apikey option to add your own API key.
+#apikey="apikey"
 cacheClearInterval=86400
+#Use the setting below at your own risk!
+letPlayersJoinWhenDenied=false
 #DO NOT CHANGE THE VERSION
-configVersion=1.1
+configVersion=2.0
 [Messages]
 usingVPN="Topaz RESPONSE!"
 errorKick="Topaz ERROR!"

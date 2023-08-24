@@ -24,7 +24,7 @@ Q: My players are getting kicked with an error message! What do I do?
 A: Check your logs! It is possible that you just ran out of queries for today!
 
 Q: What are the permissions that Topaz checks for?
-A: `topaz.bypass` for the IP quality score check bypass.
+A: `topaz.bypass` for bypassing the IP proxy check.
 
 Q: What permission plugin do you recommend?
 A: [LuckPerms never failed me. :)](https://luckperms.net)

@@ -126,9 +126,15 @@ public class Topaz {
             while ((inputLine = in.readLine()) != null) { response.append(inputLine); }
             in.close();
             JsonObject ipInfo = JsonParser.parseString(response.toString()).getAsJsonObject().getAsJsonObject(e.getPlayer().getRemoteAddress().getHostString());
+            if (ipInfo == null) {
+                logger.error("Something went wrong! Make sure you have enough API requests for today!\n\nHere's the JSON that Topaz received:");
+                logger.error(response.toString());
+                e.setResult(ResultedEvent.ComponentResult.denied(text((messages.getString("errorKick")))));
+                return;
+            }
             if (ipInfo.has("status")) {
                 String status = ipInfo.get("status").getAsString();
-                if ("warning".equals(status) || "error".equals(status)) { logger.error("ProxyCheck returned a warning/error! (" + ipInfo.get("message").getAsString() + ")"); }
+                if ("warning".equals(status) || "error".equals(status)) { logger.error("ProxyCheck returned a warning/error! (" + ipInfo.get("message").getAsString() + ")\n\nHere's the JSON that Topaz received:"); logger.error(response.toString()); }
                 if ("denied".equals(status)) {
                     logger.error("ProxyCheck denied your request! (" + ipInfo.get("message").getAsString() + ")");
                     if (!options.getBoolean("letPlayersJoinWhenDenied")) { e.setResult(ResultedEvent.ComponentResult.denied((text(messages.getString("errorkick"))))); }}

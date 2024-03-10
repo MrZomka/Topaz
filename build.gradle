@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'dev.zomka'
-version = '2.0-SNAPSHOT'
+version = '2.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -16,9 +16,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'com.velocitypowered:velocity-api:3.1.2-SNAPSHOT'
-    annotationProcessor 'com.velocitypowered:velocity-api:3.1.2-SNAPSHOT'
-    implementation 'com.google.code.gson:gson:2.8.8'
+    compileOnly "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
+    annotationProcessor "com.velocitypowered:velocity-api:3.2.0-SNAPSHOT"
+    implementation "com.google.code.gson:gson:2.10.1"
 }
 
 def targetJavaVersion = 11
